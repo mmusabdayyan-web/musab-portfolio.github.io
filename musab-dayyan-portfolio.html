@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Muhammad Musab Dayyan — Portfolio</title>
+<meta name="description" content="Muhammad Musab Dayyan — A Levels Cambridge private candidate and aspiring computer science engineer. Sciences, computing, MUN, and self-directed study." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F5F6F9;
+    --paper-2:#FFFFFF;
+    --ink:#0C1524;
+    --ink-2:#16233A;
+    --muted:#57667D;
+    --accent:#1F4EF5;
+    --accent-soft:rgba(31,78,245,0.10);
+    --warm:#F5A524;
+    --line:rgba(12,21,36,0.10);
+    --line-strong:rgba(12,21,36,0.18);
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'JetBrains Mono',monospace;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    color:var(--ink);
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:46px 46px;
+    background-position:center top;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(245,246,249,0.82);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{
+    font-family:var(--display);font-weight:700;letter-spacing:.04em;
+    font-size:1.05rem;display:flex;align-items:center;gap:.55rem;
+  }
+  .logo .tick{width:10px;height:10px;background:var(--accent);border-radius:2px;transform:rotate(45deg)}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-size:.9rem;color:var(--muted);font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
+    padding:9px 16px;border:1px solid var(--ink);border-radius:6px;color:var(--ink);font-weight:600;
+    transition:background .2s,color .2s;
+  }
+  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;cursor:pointer}
+  .nav-toggle span{display:block;width:20px;height:2px;background:var(--ink);margin:4px 0}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:82px 0 54px;position:relative}
+  .hero .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+  .hero .eyebrow::after{content:"";height:1px;flex:1;background:var(--line-strong);max-width:120px}
+  .hero h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(2.9rem,8vw,6.2rem);
+    line-height:.98;letter-spacing:-.02em;color:var(--ink);
+    margin-bottom:22px;
+  }
+  .hero h1 .light{color:var(--muted);font-weight:500}
+  .hero .lede{font-size:clamp(1.02rem,2.2vw,1.28rem);color:var(--ink-2);max-width:640px;margin-bottom:34px}
+  .hero .lede strong{color:var(--accent);font-weight:600}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:46px}
+  .btn{
+    font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+    padding:14px 24px;border-radius:8px;transition:transform .15s,box-shadow .2s,background .2s;
+    display:inline-flex;align-items:center;gap:9px;
+  }
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px rgba(31,78,245,0.28)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(31,78,245,0.36)}
+  .btn-ghost{border:1px solid var(--line-strong);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+
+  /* spec strip */
+  .spec{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line-strong);border-radius:12px;overflow:hidden;
+    background:var(--paper-2);
+  }
+  .spec .cell{padding:18px 20px;border-right:1px solid var(--line)}
+  .spec .cell:last-child{border-right:none}
+  .spec .cell .k{margin-bottom:7px}
+  .spec .cell .v{font-family:var(--display);font-weight:600;font-size:1rem;color:var(--ink)}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:76px 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:40px}
+  .sec-head .num{font-family:var(--mono);font-size:.8rem;color:var(--accent);font-weight:600}
+  .sec-head h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-.01em}
+  .sec-head .rule{flex:1;height:1px;background:var(--line-strong);align-self:center}
+
+  /* ---------- SPECTRUM (signature) ---------- */
+  .spectrum-band{background:var(--ink);color:#fff;border-radius:18px;padding:40px 34px;position:relative;overflow:hidden}
+  .spectrum-band::before{
+    content:"";position:absolute;inset:0;opacity:.5;
+    background:linear-gradient(90deg,transparent,rgba(31,78,245,0.25),transparent);
+  }
+  .spectrum-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:28px;position:relative}
+  .spectrum-head .title{font-family:var(--display);font-weight:600;font-size:1.15rem}
+  .spectrum-head .sub{color:rgba(255,255,255,.55)}
+  .grades{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative}
+  .grade{
+    border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:20px 14px;text-align:center;
+    background:rgba(255,255,255,.03);transition:transform .2s,border-color .2s,background .2s;
+  }
+  .grade:hover{transform:translateY(-4px);border-color:var(--warm);background:rgba(245,165,36,0.06)}
+  .grade .mark{font-family:var(--display);font-weight:700;font-size:2.1rem;line-height:1;color:var(--warm);margin-bottom:10px}
+  .grade .subj{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+  .about-grid p{color:var(--ink-2);font-size:1.05rem;margin-bottom:18px}
+  .about-grid p:last-child{margin-bottom:0}
+  .about-side{border-left:2px solid var(--accent);padding-left:24px}
+  .about-side .stat{margin-bottom:26px}
+  .about-side .stat:last-child{margin-bottom:0}
+  .about-side .stat .big{font-family:var(--display);font-weight:700;font-size:2.2rem;color:var(--ink);line-height:1}
+  .about-side .stat .lbl{margin-top:6px}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .skill-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;transition:border-color .2s,transform .2s}
+  .skill-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .skill-card h3{font-family:var(--display);font-size:1.02rem;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+  .skill-card h3 .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:.82rem;font-weight:500;color:var(--ink-2);background:var(--accent-soft);padding:5px 11px;border-radius:20px}
+  .chip.lead{background:var(--warm);color:#3a2a00;font-weight:600}
+
+  /* ---------- WORK ---------- */
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .work-card{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:28px;
+    position:relative;transition:transform .2s,box-shadow .2s,border-color .2s;overflow:hidden;
+  }
+  .work-card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .25s}
+  .work-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(12,21,36,0.10);border-color:transparent}
+  .work-card:hover::after{transform:scaleY(1)}
+  .work-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:14px}
+  .work-card .role{margin-bottom:4px}
+  .work-card h3{font-family:var(--display);font-weight:600;font-size:1.28rem;letter-spacing:-.01em}
+  .work-card p{color:var(--muted);font-size:.96rem;margin-top:8px}
+  .badge{
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+    white-space:nowrap;padding:6px 11px;border-radius:20px;background:var(--ink);color:#fff;
+  }
+  .badge.gold{background:var(--warm);color:#3a2a00}
+
+  /* ---------- EDUCATION ---------- */
+  .timeline{position:relative;padding-left:30px}
+  .timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line-strong)}
+  .t-item{position:relative;padding-bottom:38px}
+  .t-item:last-child{padding-bottom:0}
+  .t-item::before{content:"";position:absolute;left:-30px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--accent)}
+  .t-item.now::before{background:var(--accent)}
+  .t-item .yr{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:5px}
+  .t-item h3{font-family:var(--display);font-weight:600;font-size:1.2rem}
+  .t-item p{color:var(--muted);margin-top:4px;font-size:.96rem}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--ink);color:#fff;border-radius:20px;padding:clamp(38px,6vw,64px);position:relative;overflow:hidden}
+  .contact::before{content:"";position:absolute;top:-40%;right:-10%;width:420px;height:420px;background:radial-gradient(circle,rgba(31,78,245,0.35),transparent 70%)}
+  .contact h2{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,5vw,3rem);letter-spacing:-.02em;margin-bottom:14px;position:relative}
+  .contact .sub{color:rgba(255,255,255,.65);max-width:440px;margin-bottom:34px;position:relative}
+  .contact-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+  .contact-item{border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:20px;transition:border-color .2s,background .2s}
+  .contact-item:hover{border-color:var(--warm);background:rgba(255,255,255,.03)}
+  .contact-item .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px}
+  .contact-item .v{font-family:var(--display);font-weight:600;font-size:1.02rem;word-break:break-word}
+
+  footer{padding:40px 0 60px;text-align:center}
+  footer .mono{display:block;margin-top:6px}
+  footer .fname{font-family:var(--display);font-weight:600;color:var(--ink)}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:880px){
+    .nav-links{display:none}
+    .nav-toggle{display:block}
+    .about-grid{grid-template-columns:1fr;gap:32px}
+    .skills-grid{grid-template-columns:repeat(2,1fr)}
+    .spec{grid-template-columns:repeat(2,1fr)}
+    .spec .cell:nth-child(2){border-right:none}
+    .spec .cell:nth-child(1),.spec .cell:nth-child(2){border-bottom:1px solid var(--line)}
+    .grades{grid-template-columns:repeat(3,1fr)}
+    .contact-list{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){
+    .work-grid{grid-template-columns:1fr}
+    .skills-grid{grid-template-columns:1fr}
+    .grades{grid-template-columns:repeat(2,1fr)}
+    .hero{padding:56px 0 40px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none;transition:none}
+    .btn:hover,.work-card:hover,.skill-card:hover,.grade:hover{transform:none}
+  }
+  :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo"><span class="tick"></span> M<span style="color:var(--accent)">M</span>D</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#education">Education</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="mono">A Levels · Cambridge · Private Candidate</span></div>
+      <h1>Muhammad<br>Musab <span class="light">Dayyan</span></h1>
+      <p class="lede">An independent Cambridge student turning a self-directed education into real results and real projects — with a clear path toward <strong>computer science engineering</strong>.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">View my work →</a>
+        <a href="#contact" class="btn btn-ghost">Contact me</a>
+      </div>
+      <div class="spec">
+        <div class="cell"><div class="k mono">Field</div><div class="v">Sciences + CS</div></div>
+        <div class="cell"><div class="k mono">Status</div><div class="v">Private Candidate</div></div>
+        <div class="cell"><div class="k mono">Session</div><div class="v">May/June 2026</div></div>
+        <div class="cell"><div class="k mono">Based in</div><div class="v">Karachi, PK</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECTRUM / SIGNATURE -->
+  <section style="padding-top:0">
+    <div class="wrap reveal">
+      <div class="spectrum-band">
+        <div class="spectrum-head">
+          <span class="title">Expected results</span>
+          <span class="sub mono">Grade 11 · May/June 2026</span>
+        </div>
+        <div class="grades">
+          <div class="grade"><div class="mark">A*</div><div class="subj">Physics</div></div>
+          <div class="grade"><div class="mark">A*</div><div class="subj">Chemistry</div></div>
+          <div class="grade"><div class="mark">A*</div><div class="subj">Biology</div></div>
+          <div class="grade"><div class="mark">A*</div><div class="subj">Comp. Science</div></div>
+          <div class="grade"><div class="mark">A*/A</div><div class="subj">Mathematics</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap reveal">
+      <div class="sec-head"><span class="num">01</span><h2>About</h2><span class="rule"></span></div>
+      <div class="about-grid">
+        <div>
+          <p>My education has been a story of adapting — and that has shaped me more than any single grade. I began at The Educators in the matriculation system, then moved to Karachi Public School in Grade 7 and into the Cambridge system: a new syllabus, a new environment, and an entirely different way of thinking, all at once. That first year was genuinely hard, yet I finished fourth in my class — and third the year after.</p>
+          <p>I chose to pursue my O and A Levels as a private candidate, taking full ownership of my education: selecting qualified tutors, structuring my own study, and holding myself to a higher standard. Physics became my strongest subject, and Computer Science set my direction.</p>
+          <p>My aim is to become a computer science engineer — an interest that clicked at a hackathon, watching code my team had written turn into a game people could actually play. I want to spend my life building things with code that solve real problems.</p>
+        </div>
+        <div class="about-side">
+          <div class="stat"><div class="big">3rd</div><div class="lbl mono">Class rank after switching systems</div></div>
+          <div class="stat"><div class="big">5</div><div class="lbl mono">Model UN conferences</div></div>
+          <div class="stat"><div class="big">100%</div><div class="lbl mono">Self-directed study</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap reveal">
+      <div class="sec-head"><span class="num">02</span><h2>Skills</h2><span class="rule"></span></div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3><span class="dot"></span>Sciences &amp; Math</h3>
+          <div class="chips">
+            <span class="chip lead">Physics</span>
+            <span class="chip">Chemistry</span>
+            <span class="chip">Biology</span>
+            <span class="chip">Mathematics</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><span class="dot"></span>Computing</h3>
+          <div class="chips">
+            <span class="chip">Computer Science</span>
+            <span class="chip">Programming</span>
+            <span class="chip">Game Dev · Godot / Unity</span>
+            <span class="chip">Problem Solving</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><span class="dot"></span>Communication</h3>
+          <div class="chips">
+            <span class="chip">Public Speaking</span>
+            <span class="chip">Debate &amp; Diplomacy</span>
+            <span class="chip">Negotiation</span>
+            <span class="chip">Research</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><span class="dot"></span>Ways of Working</h3>
+          <div class="chips">
+            <span class="chip">Self-directed study</span>
+            <span class="chip">Time management</span>
+            <span class="chip">Content creation</span>
+            <span class="chip">Teamwork</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap reveal">
+      <div class="sec-head"><span class="num">03</span><h2>Work &amp; Achievements</h2><span class="rule"></span></div>
+      <div class="work-grid">
+
+        <div class="work-card">
+          <div class="work-top">
+            <div><div class="role mono">Startup · Founder</div><h3>mmd.studyguides</h3></div>
+            <span class="badge gold">Founder</span>
+          </div>
+          <p>Founded an online O-Level tutoring venture teaching Physics, Computer Science, and Biology. Built Instagram, Facebook, and WhatsApp communities and create educational content to grow a student base.</p>
+        </div>
+
+        <div class="work-card">
+          <div class="work-top">
+            <div><div class="role mono">Hackathon · Cedar Codes</div><h3>Daydream Karachi</h3></div>
+            <span class="badge">Team</span>
+          </div>
+          <p>Built a functional game with my team using a game engine (Godot / Unity) at a community game-development hackathon — my first taste of the full build process, and the moment my path toward CS engineering clicked.</p>
+        </div>
+
+        <div class="work-card">
+          <div class="work-top">
+            <div><div class="role mono">Debate · 5 conferences</div><h3>Model United Nations</h3></div>
+            <span class="badge">Special Mention</span>
+          </div>
+          <p>Delegate across five three-day conferences. Special Mention at HUMUN; Honourable Mentions at REMUN and ELARAMUN. Served as Brand Ambassador for HUMUN and TAFSMUN, recruiting around 40 participants combined.</p>
+        </div>
+
+        <div class="work-card">
+          <div class="work-top">
+            <div><div class="role mono">STEM Olympiad · 2026</div><h3>National Biology Olympiad</h3></div>
+            <span class="badge gold">Gold Award</span>
+          </div>
+          <p>Competed in Batch-I with Biology at the nationwide olympiad by Great Future Pakistan, earning a Certificate of Appreciation (Gold Award) for outstanding performance.</p>
+        </div>
+
+        <div class="work-card">
+          <div class="work-top">
+            <div><div class="role mono">STEM · Beaconhouse Jubilee</div><h3>SciCon 6</h3></div>
+            <span class="badge">Module Winner</span>
+          </div>
+          <p>Won the Kinetic Cascade physics module with my team, NOVA X — taking a leading role in strategy and module selection at this competitive STEM event.</p>
+        </div>
+
+        <div class="work-card">
+          <div class="work-top">
+            <div><div class="role mono">STEM · Cadet Level</div><h3>Kangaroo Science Contest</h3></div>
+            <span class="badge">One Star</span>
+          </div>
+          <p>Competed in the International Kangaroo Science Contest (IKSC), a nationwide olympiad across physics, chemistry, and biology, earning a One Star Badge on my first attempt.</p>
+        </div>
+
+        <div class="work-card" style="grid-column:1/-1">
+          <div class="work-top">
+            <div><div class="role mono">Internship &amp; Volunteering</div><h3>Parents Voice Ujala &amp; BuildUp</h3></div>
+            <span class="badge">Internship</span>
+          </div>
+          <p>Interned and volunteered at Parents Voice Ujala, a special-needs foundation, working alongside psychologists, therapists, and doctors and assisting with care workshops, fundraising, and events. Also served as a marketing &amp; research intern at BuildUp, an India-based organisation.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap reveal">
+      <div class="sec-head"><span class="num">04</span><h2>Education</h2><span class="rule"></span></div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="yr">Early &amp; primary years</div>
+          <h3>The Educators</h3>
+          <p>Completed early schooling and full primary within the matriculation system.</p>
+        </div>
+        <div class="t-item">
+          <div class="yr">Grade 7 onward · Cambridge</div>
+          <h3>Karachi Public School</h3>
+          <p>Shifted into the Cambridge system — finished 4th in class the first year, then 3rd the next. Chose the sciences with Biology in Grade 9.</p>
+        </div>
+        <div class="t-item now">
+          <div class="yr">2025 – 2026 · Current</div>
+          <h3>Private Candidate — O &amp; A Levels</h3>
+          <p>Cambridge O and A Levels pursued independently: self-selected tutors, self-built study structure, and full ownership of my progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap reveal">
+      <div class="contact">
+        <h2>Let's get in touch</h2>
+        <p class="sub">Open to opportunities, mentorship, and conversations about the sciences, computing, and building things worth building.</p>
+        <div class="contact-list">
+          <a class="contact-item" href="mailto:m.musabdayyan@gmail.com">
+            <div class="k">Email</div>
+            <div class="v">m.musabdayyan@gmail.com</div>
+          </a>
+          <a class="contact-item" href="https://www.linkedin.com/search/results/all/?keywords=Musab%20Dayyan" target="_blank" rel="noopener">
+            <div class="k">LinkedIn</div>
+            <div class="v">Musab Dayyan</div>
+          </a>
+          <a class="contact-item" href="tel:+923320301019">
+            <div class="k">Phone</div>
+            <div class="v">+92 332 0301019</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="fname">Muhammad Musab Dayyan</span>
+    <span class="mono">Personal Portfolio · © 2026</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  (function(){
+    var toggle=document.getElementById('navToggle');
+    var links=document.getElementById('navLinks');
+    if(!toggle)return;
+    toggle.addEventListener('click',function(){
+      var open=links.style.display==='flex';
+      if(open){
+        links.style.display='';
+        toggle.setAttribute('aria-expanded','false');
+      }else{
+        links.style.display='flex';
+        links.style.position='absolute';
+        links.style.top='66px';
+        links.style.left='0';
+        links.style.right='0';
+        links.style.flexDirection='column';
+        links.style.gap='0';
+        links.style.background='var(--paper-2)';
+        links.style.borderBottom='1px solid var(--line)';
+        links.style.padding='10px 28px 18px';
+        toggle.setAttribute('aria-expanded','true');
+        Array.prototype.forEach.call(links.querySelectorAll('a'),function(a){
+          a.style.padding='12px 0';
+          a.onclick=function(){links.style.display='';toggle.setAttribute('aria-expanded','false');};
+        });
+      }
+    });
+  })();
+
+  // Scroll reveal
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(e){e.classList.add('in');});return;
+    }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{threshold:0.14});
+    els.forEach(function(e){io.observe(e);});
+  })();
+</script>
+</body>
+</html>
